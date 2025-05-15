@@ -80,10 +80,10 @@ function crearcategorias()
 {
      document.getElementById("categoria").innerHTML="";
 
-    categorias.array.forEach(element => {
+    categorias.forEach(element => {
         
         const scrool = `
-          <option value="${element}">${element}</option>
+          <option value="${element.name}">${element.name}</option>
         `;
          document.getElementById("menu").insertAdjacentHTML('beforeend', scrool);
     });

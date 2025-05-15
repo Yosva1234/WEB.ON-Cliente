@@ -1,6 +1,4 @@
     const empresa = window.location.hash.substring(1); 
-
-document.addEventListener('DOMContentLoaded', () => {
     const platosContainer = document.getElementById('platos-container');
     
 
@@ -27,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   
      // Función para eliminar una bebida
-    window.eliminarBebida = (id) => {
+    function eliminarBebida (id) {
       if(!empresa || empresa === 'favicon.ico') return;
       fetch(`/${empresa}/${id}`, {
         method: 'DELETE', // Enviar una solicitud DELETE
@@ -41,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
   
     cargarBebidas();
   
-  });
 
     function press()
     {
@@ -49,4 +46,5 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.href = `formulario.html#${usernameinput}`; 
     }
 
+     window.onload = cargarBebidas;
   

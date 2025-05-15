@@ -45,14 +45,14 @@ app.get('/exist/:name', async (req, res) => {
   }
 });
 
-function exist(username)
+async function exist(username)
 {
   const [tables] =  pool.query( "SHOW TABLES LIKE ?",  [username]);
   return (tables.length>0);
 
 }
 
-function hashing(username)
+ function hashing(username)
 {
     return username;
 }

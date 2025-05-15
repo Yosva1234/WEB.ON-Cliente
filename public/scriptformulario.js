@@ -85,7 +85,7 @@ function crearcategorias()
         const scrool = `
           <option value="${element.name}">${element.name}</option>
         `;
-         document.getElementById("menu").insertAdjacentHTML('beforeend', scrool);
+         document.getElementById("categoria").insertAdjacentHTML('beforeend', scrool);
     });
 
 }

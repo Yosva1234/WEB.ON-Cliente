@@ -33,6 +33,18 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch((error) => console.error('Error al eliminar la bebida:', error));
     };
   
-    // Cargar las bebidas al iniciar la página
+    
     cargarBebidas();
   });
+
+ 
+    const boton = document.getElementById("add");
+
+    function press()
+    {
+     const usernameinput = window.location.hash.substring(1); 
+      window.location.href = `formulario.html#${usernamehashing}`; 
+    }
+
+boton.addEventListener('click', press);
+  

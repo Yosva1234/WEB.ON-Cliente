@@ -4,6 +4,8 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
   // Mostrar el spinner
   document.getElementById('loading').style.display = 'block';
 
+   const empresa = window.location.hash.substring(1); 
+
   const nombre = document.getElementById('nombre').value;
   const precio = document.getElementById('preciocup').value;
   const info = document.getElementById('info').value;
@@ -16,7 +18,6 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
       document.getElementById('loading').style.display = 'none'; // Ocultar spinner si hay error
       return;
   } 
-
 
   const formData = new FormData();
   formData.append('image', file);
@@ -44,7 +45,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
           categoria,
       };
 
-      const saveResponse = await fetch('/productos', {
+      const saveResponse = await fetch(`/${empresa}`, {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
@@ -56,7 +57,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
       if (saveResponse.ok) {
           document.getElementById('message').innerText = 'Producto guardado correctamente.';
           console.log('Producto guardado:', saveData);
-          window.location.href = "bienvenido.html";
+          window.location.href =` bienvenido.html${empresa}`;
           
       } else {
           throw new Error('Error al guardar el producto.');
@@ -69,3 +70,45 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
       document.getElementById('loading').style.display = 'none';
   }
 });
+
+let categorias;
+
+
+function crearcategorias()
+{
+     document.getElementById("categoria").innerHTML="";
+
+    categorias.array.forEach(element => {
+        
+        const scrool = `
+          <option value="${element}">${element}</option>
+        `;
+         document.getElementById("menu").insertAdjacentHTML('beforeend', scrool);
+    });
+
+}
+
+ function obtenercategorias()
+  {
+    const hashValue = window.location.hash.substring(1); 
+
+    const aux = 'cat'+hashValue;
+
+    fetch(`/tabla/${aux}`) 
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error al obtener los datos');
+        }
+        return response.json();
+      })
+      .then(data => {
+        categorias = data;
+        crearcategorias();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Hubo un error al cargar los datos de las bebidas');
+      });
+  }
+
+  window.onload = obtenercategorias;

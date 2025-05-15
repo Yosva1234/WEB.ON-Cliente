@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const platosContainer = document.getElementById('platos-container');
-     
+    
+    const empresa = window.location.hash.substring(1); 
     // Función para cargar las bebidas
     function cargarBebidas() {
-      fetch('/productos') // Hacer una solicitud GET a la ruta /bebidas
+      fetch(`/${empresa}`) // Hacer una solicitud GET a la ruta /bebidas
         .then((response) => response.json())
         .then((data) => {
           platosContainer.innerHTML = ''; // Limpiar el contenedor
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
     // Función para eliminar una bebida
     window.eliminarBebida = (id) => {
-      fetch(`/productos/${id}`, {
+      fetch(`/${empresa}/${id}`, {
         method: 'DELETE', // Enviar una solicitud DELETE
       })
         .then((response) => response.json())

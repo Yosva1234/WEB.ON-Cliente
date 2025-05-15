@@ -72,7 +72,7 @@ async function exist(username) {
 
 app.get('/:productos', async(req, res) => {
   const {productos} = req.params;
-  
+  console.log(productos);
   try{
   const [resp] = await pool.query('SELECT * FROM ??', [productos]);
   res.json(resp);

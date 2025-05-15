@@ -1,11 +1,11 @@
+
+   const empresa = window.location.hash.substring(1); 
+
 document.getElementById('uploadForm').addEventListener('submit', async (e) => {
   e.preventDefault();
 
   // Mostrar el spinner
   document.getElementById('loading').style.display = 'block';
-
-   const empresa = window.location.hash.substring(1); 
-
   const nombre = document.getElementById('nombre').value;
   const precio = document.getElementById('preciocup').value;
   const info = document.getElementById('info').value;

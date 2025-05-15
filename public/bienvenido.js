@@ -2,8 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const platosContainer = document.getElementById('platos-container');
     
     const empresa = window.location.hash.substring(1); 
+    console.log(empresa);
+
     // Función para cargar las bebidas
     function cargarBebidas() {
+      if(!empresa || empresa === 'favicon.ico') return;
       fetch(`/${empresa}`) // Hacer una solicitud GET a la ruta /bebidas
         .then((response) => response.json())
         .then((data) => {
@@ -23,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
     // Función para eliminar una bebida
     window.eliminarBebida = (id) => {
+      if(!empresa || empresa === 'favicon.ico') return;
       fetch(`/${empresa}/${id}`, {
         method: 'DELETE', // Enviar una solicitud DELETE
       })
@@ -37,14 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
     cargarBebidas();
   });
 
- 
-    const boton = document.getElementById("add");
-
     function press()
     {
      const usernameinput = window.location.hash.substring(1); 
       window.location.href = `formulario.html#${usernameinput}`; 
     }
 
-boton.addEventListener('click', press);
   

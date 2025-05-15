@@ -4,6 +4,8 @@
 document.getElementById('uploadForm').addEventListener('submit', async (e) => {
   e.preventDefault();
 
+
+
   // Mostrar el spinner
   document.getElementById('loading').style.display = 'block';
   const nombre = document.getElementById('nombre').value;
@@ -57,7 +59,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
       if (saveResponse.ok) {
           document.getElementById('message').innerText = 'Producto guardado correctamente.';
           console.log('Producto guardado:', saveData);
-          window.location.href =` bienvenido.html${empresa}`;
+          window.location.href =` bienvenido.html#${empresa}`;
           
       } else {
           throw new Error('Error al guardar el producto.');
@@ -90,9 +92,11 @@ function crearcategorias()
 
  function obtenercategorias()
   {
-    const hashValue = window.location.hash.substring(1); 
+    const hashValue = empresa;
 
     const aux = 'cat'+hashValue;
+
+    console.log(aux)
 
     fetch(`/${aux}`) 
       .then(response => {

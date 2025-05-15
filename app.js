@@ -70,17 +70,16 @@ async function exist(username) {
     return username;
 }
 
-app.get('/:productos', (req, res) => {
+app.get('/:productos', async(req, res) => {
   const {productos} = req.params;
-  const query = `SELECT * FROM ${productos}`; 
-  pool.query(query, (err, results) => {
-    if (err) {
-      console.error('Error al ejecutar la consulta:', err.stack);
-      res.status(500).send('Error en el servidor');
-      return;
-    }
-    res.json(results); 
-  });
+  
+  try{
+  const [resp] = await pool.query('SELECT * FROM ?', [productos]);
+  res.json(resp);
+  }catch (error) {
+    console.error('Error al obtener productos:', error);
+    res.status(500).json({ error: 'Error en el servidor' });
+  }
 });
 
 

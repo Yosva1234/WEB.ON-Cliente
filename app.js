@@ -70,8 +70,9 @@ async function exist(username) {
     return username;
 }
 
-app.get('/productos', (req, res) => {
-  const query = 'SELECT * FROM productos'; 
+app.get('/:productos', (req, res) => {
+  const {productos} = req.params;
+  const query = `SELECT * FROM ${productos}`; 
   pool.query(query, (err, results) => {
     if (err) {
       console.error('Error al ejecutar la consulta:', err.stack);

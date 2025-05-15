@@ -74,7 +74,7 @@ app.get('/:productos', async(req, res) => {
   const {productos} = req.params;
   
   try{
-  const [resp] = await pool.query('SELECT * FROM ?', [productos]);
+  const [resp] = await pool.query('SELECT * FROM ??', [productos]);
   res.json(resp);
   }catch (error) {
     console.error('Error al obtener productos:', error);

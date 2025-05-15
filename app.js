@@ -37,20 +37,32 @@ app.get('/encript/:name', async (req, res) => {
 
 app.get('/exist/:name', async (req, res) => {
   const { name } = req.params;
-  console.log(name);
+  console.log("Nombre recibido:", name); // Depuración
+
   try {
-    const resultado = await exist(name); 
+    // Sanitiza el nombre (opcional pero recomendado)
+    const sanitizedName = name.replace(/[^a-zA-Z0-9_]/g, "");
+    if (!sanitizedName) {
+      return res.status(400).json({ error: "Nombre inválido" });
+    }
+
+    const resultado = await exist(sanitizedName);
     res.json({ valor: resultado });
   } catch (error) {
+    console.error("Error en /exist:", error.message); // Log detallado
     res.status(500).json({ error: "Error al verificar la tabla" });
   }
 });
 
-async function exist(username)
-{
-  const [tables] = await   pool.query( "SHOW TABLES LIKE ?",  [username]);
-  return (tables.length>0);
-
+async function exist(username) {
+  try {
+    const [tables] = await pool.query("SHOW TABLES LIKE ?", [username]);
+    console.log("Resultado de la consulta:", tables); // Depuración
+    return tables.length > 0;
+  } catch (error) {
+    console.error("Error en exist():", error);
+    throw error; // Propaga el error
+  }
 }
 
  function hashing(username)

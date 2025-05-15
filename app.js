@@ -83,16 +83,18 @@ app.get('/:productos', async(req, res) => {
 });
 
 
-app.post('/productos', (req, res) => {
+app.post('/:productos', async(req, res) => {
   const { nombre, precio, info, imagen, categoria } = req.body; 
+  const {productos} = req.params;
 
   if (!nombre  || !precio  || !info || !categoria ) {
     return res.status(400).json({ error: 'Todos los campos son obligatorios.' });
   }
 
-  const query = 'INSERT INTO productos (nombre, precio, info, imagen, categoria) VALUES (?, ? , ? , ? , ?)'; 
+  try{
+  const query = `INSERT INTO ?? (nombre, precio, info, imagen, categoria) VALUES (?, ? , ? , ? , ?)`;
 
-  pool.query(query, [nombre, precio, info, imagen, categoria], (err, results) => {
+  const [results] = await pool.query(query, [productos,nombre, precio, info, imagen, categoria], (err, results) => {
     if (err) {
       console.error('Error al agregar la los productos:', err.stack);
       return res.status(500).json({ error: 'Error en el servidor' });
@@ -100,6 +102,16 @@ app.post('/productos', (req, res) => {
 
     res.status(201).json({ message: 'producto agregado correctamente', id: results.insertId });
   });
+
+} catch(error)
+{
+    console.error('Error al agregar producto:', error);
+    res.status(500).json({ 
+      error: 'Error en el servidor',
+      detalle: error.message 
+    });
+}
+
 });
 
 app.delete('/productos/:id', (req, res) => {

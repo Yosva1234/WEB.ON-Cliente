@@ -94,7 +94,7 @@ function crearcategorias()
 
     const aux = 'cat'+hashValue;
 
-    fetch(`/tabla/${aux}`) 
+    fetch(`/${aux}`) 
       .then(response => {
         if (!response.ok) {
           throw new Error('Error al obtener los datos');

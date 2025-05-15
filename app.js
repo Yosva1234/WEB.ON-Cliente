@@ -73,6 +73,7 @@ async function exist(username) {
 app.get('/:productos', async(req, res) => {
   const {productos} = req.params;
   console.log(productos);
+  if(productos === 'favicon.ico') return res.status(204).end();
   try{
   const [resp] = await pool.query('SELECT * FROM ??', [productos]);
   res.json(resp);

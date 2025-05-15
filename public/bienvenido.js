@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function press()
     {
      const usernameinput = window.location.hash.substring(1); 
-      window.location.href = `formulario.html#${usernamehashing}`; 
+      window.location.href = `formulario.html#${usernameinput}`; 
     }
 
 boton.addEventListener('click', press);

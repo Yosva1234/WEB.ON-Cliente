@@ -48,7 +48,7 @@ app.get('/exist/:name', async (req, res) => {
 
 async function exist(username)
 {
-  const [tables] =  pool.query( "SHOW TABLES LIKE ?",  [username]);
+  const [tables] = await   pool.query( "SHOW TABLES LIKE ?",  [username]);
   return (tables.length>0);
 
 }

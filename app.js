@@ -37,6 +37,7 @@ app.get('/encript/:name', async (req, res) => {
 
 app.get('/exist/:name', async (req, res) => {
   const { name } = req.params;
+  console.log(name);
   try {
     const resultado = await exist(name); 
     res.json({ valor: resultado });

@@ -20,7 +20,7 @@ document.getElementById('login-form').addEventListener('submit', async function 
 
 async function getelement(element) {
   try {
-    const response = await fetch('/encript');
+    const response = await fetch(`/encript/${element}`);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -33,12 +33,12 @@ async function getelement(element) {
 
 async function exist(element) {
   try {
-    const response = await fetch('/exist');
+    const response = await fetch(`/exist/${element}`);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    return data.valor(element);
+    return data.valor;
   } catch (error) {
     console.error('Hubo un problema con la solicitud:', error);
   }

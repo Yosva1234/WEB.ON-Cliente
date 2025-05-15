@@ -24,11 +24,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
-app.get('/encript', (req, res) => {
-  res.json({ valor: hashing }); 
+app.get('/encript:name', (req, res) => {
+ const { name } = req.params;
+  res.json({valor:hashing(name)});
 });
-app.get(`/exist`,(req,res) =>{
-  res.json({valor:exist});
+app.get(`/exist/:name`,(req,res) =>{
+ const { name } = req.params;
+  res.json({valor:exist(name)});
 });
 
 function exist(username)

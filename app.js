@@ -115,11 +115,12 @@ app.post('/:productos', async(req, res) => {
 
 });
 
-app.delete('/productos/:id', (req, res) => {
-  const { id } = req.params;
+app.delete('/:productos/:id', (req, res) => {
+  const { productos , id } = req.params;
 
-  const query = 'DELETE FROM productos WHERE id = ?';
-  pool.query(query, [id], (err, results) => {
+
+  const query = 'DELETE FROM ?? WHERE id = ?';
+  pool.query(query, [productos,id], (err, results) => {
     if (err) {
       console.error('Error al eliminar el productos:', err.stack);
       res.status(500).send('Error en el servidor');

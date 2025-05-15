@@ -1,7 +1,9 @@
+    const empresa = window.location.hash.substring(1); 
+
 document.addEventListener('DOMContentLoaded', () => {
     const platosContainer = document.getElementById('platos-container');
     
-    const empresa = window.location.hash.substring(1); 
+
     console.log(empresa);
 
     // Función para cargar las bebidas

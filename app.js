@@ -116,23 +116,25 @@ app.post('/:productos', async(req, res) => {
 });
 
 app.delete('/:productos/:id', (req, res) => {
-  const { productos , id } = req.params;
-
+  const { productos, id } = req.params;
 
   const query = 'DELETE FROM ?? WHERE id = ?';
-  pool.query(query, [productos,id], (err, results) => {
+  pool.query(query, [productos, id], (err, results) => {
     if (err) {
-      console.error('Error al eliminar el productos:', err.stack);
-      res.status(500).send('Error en el servidor');
-      return;
+      console.error('Error al eliminar el producto:', err.stack);
+      // Mantener consistencia: siempre responder con JSON
+      return res.status(500).json({ error: 'Error en el servidor' });
     }
 
     if (results.affectedRows === 0) {
-      res.status(404).json({ error: 'producto no encontrada' });
-      return;
+      return res.status(404).json({ error: 'Producto no encontrado' });
     }
 
-    res.json({ message: 'producto eliminada correctamente' });
+    res.json({ 
+      success: true,
+      message: 'Producto eliminado correctamente',
+      id: id // Devuelve el ID eliminado para referencia
+    });
   });
 });
 

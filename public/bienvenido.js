@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch((error) => console.error('Error al cargar las bebidas:', error));
     }
   
-    // Función para eliminar una bebida
+     // Función para eliminar una bebida
     window.eliminarBebida = (id) => {
       if(!empresa || empresa === 'favicon.ico') return;
       fetch(`/${empresa}/${id}`, {
@@ -37,8 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch((error) => console.error('Error al eliminar la bebida:', error));
     };
   
-    
     cargarBebidas();
+  
   });
 
     function press()

@@ -1,5 +1,5 @@
 
-   const empresa = window.location.hash.substring(1); 
+  const empresa = window.location.hash.substring(1); 
 
 document.getElementById('uploadForm').addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -60,6 +60,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
           document.getElementById('message').innerText = 'Producto guardado correctamente.';
           console.log('Producto guardado:', saveData);
           window.location.href =`bienvenido.html#${empresa}`;
+          document.getElementById('loading').style.display = 'none';
           
       } else {
           throw new Error('Error al guardar el producto.');
@@ -67,8 +68,6 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
   } catch (error) {
       console.error('Error:', error);
       document.getElementById('message').innerText = 'Hubo un error. Inténtalo de nuevo.';
-  } finally {
-      // Ocultar el spinner cuando termine todo (éxito o error)
       document.getElementById('loading').style.display = 'none';
   }
 });

@@ -24,13 +24,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
-app.get('/encript:name', (req, res) => {
- const { name } = req.params;
-  res.json({valor:hashing(name)});
+
+app.get('/encript/:name', async (req, res) => {
+  const { name } = req.params;
+  try {
+    const resultado = await hashing(name); 
+    res.json({ valor: resultado });
+  } catch (error) {
+    res.status(500).json({ error: "Error al verificar la tabla" });
+  }
 });
-app.get(`/exist/:name`,(req,res) =>{
- const { name } = req.params;
-  res.json({valor:exist(name)});
+
+app.get('/exist/:name', async (req, res) => {
+  const { name } = req.params;
+  try {
+    const resultado = await exist(name); 
+    res.json({ valor: resultado });
+  } catch (error) {
+    res.status(500).json({ error: "Error al verificar la tabla" });
+  }
 });
 
 function exist(username)

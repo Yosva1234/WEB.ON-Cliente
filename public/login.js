@@ -3,10 +3,12 @@ document.getElementById('login-form').addEventListener('submit', async function 
 
   try {
 
-    const username = getelement(document.getElementById('username').value);
+    const usernameinput = document.getElementById('username').value;
+    const usernamehashing = await(getelement(usernameinput));
+    const existe = await(exist(usernamehashing));
 
-    if (username === exist(username)) {
-      window.location.href = `bienvenido.html#${username}`; 
+    if (existe) {
+      window.location.href = `bienvenido.html#${usernamehashing}`; 
     } else {
       alert("Usuario o contraseña incorrectos. Inténtalo de nuevo.");
     }
@@ -25,7 +27,7 @@ async function getelement(element) {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    return data.valor(element);
+    return data.valor;
   } catch (error) {
     console.error('Hubo un problema con la solicitud:', error);
   }

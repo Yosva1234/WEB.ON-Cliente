@@ -79,39 +79,17 @@ async function push(name,nombre,precio,info,imagen,categoria)
 {
   const query = `INSERT INTO ?? (nombre, precio, info, imagen, categoria) VALUES (?, ? , ? , ? , ?)`;
 
-  const [results] = await pool.query(query, [name,nombre, precio, info, imagen, categoria], (err, results));
+  const [results] = await pool.query(query, [name,nombre, precio, info, imagen, categoria], (err, results) =>
+  {
+    if(err)
+    {
+        console.error('Error al agregar la los productos:', err.stack);
+        return res.status(500).json({ error: 'Error en el servidor' });
+    }
+  });
 
   return true;
 }
-
-
-app.post('/:productos', async(req, res) => {
-  const { nombre, precio, info, imagen, categoria } = req.body; 
-  const {productos} = req.params;
-
-  try{
-  const query = `INSERT INTO ?? (nombre, precio, info, imagen, categoria) VALUES (?, ? , ? , ? , ?)`;
-
-  const [results] = await pool.query(query, [productos,nombre, precio, info, imagen, categoria], (err, results) => {
-    if (err) {
-      console.error('Error al agregar la los productos:', err.stack);
-      return res.status(500).json({ error: 'Error en el servidor' });
-    }
-
-    res.status(201).json({ message: 'producto agregado correctamente', id: results.insertId });
-  });
-
-} catch(error)
-{
-    console.error('Error al agregar producto:', error);
-    res.status(500).json({ 
-      error: 'Error en el servidor',
-      detalle: error.message 
-    });
-}
-
-});
-
 
 
 app.listen(PORT, () => {

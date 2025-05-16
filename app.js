@@ -130,14 +130,17 @@ process.on('SIGINT', () => {
 async function borrar(name, id) {
   try {
     const query = 'DELETE FROM ?? WHERE id = ?';
-
-     await  pool.query(query, [name, id], (err, results));
-
-     return true;
-
+    // Asume que pool.query soporta promesas (ej: mysql2/promise)
+    const [results] = await pool.query(query, [name, id]);
+    
+    if (results.affectedRows === 0) {
+      throw new Error("Ningún registro fue eliminado (ID no existe)");
+    }
+    
+    return true; // Éxito
   } catch (error) {
-    console.error("Error en exist():", error);
-    throw error; // Propaga el error
+    console.error("Error al borrar:", error);
+    throw error; // Propaga el error para manejarlo fuera
   }
 }
 

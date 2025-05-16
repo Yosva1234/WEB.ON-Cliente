@@ -63,20 +63,21 @@ app.get('/:productos', async(req, res) => {
   res.json(resp);
 });
 
-app.post('/push', async(req,res) =>
+app.post('/push/:name', async(req,res) =>
 {
  const {nombre,precio,info,imagen,categoria} = req.body;
+ const {name} = req.params;
 
- const resultado = await push(nombre,precio,info,imagen,categoria);
+ const resultado = await push(name,nombre,precio,info,imagen,categoria);
 
  res.json({ valor: resultado });
 });
 
-async function push(nombre,precio,info,imagen,categoria)
+async function push(name,nombre,precio,info,imagen,categoria)
 {
   const query = `INSERT INTO ?? (nombre, precio, info, imagen, categoria) VALUES (?, ? , ? , ? , ?)`;
 
-  const [results] = await pool.query(query, [productos,nombre, precio, info, imagen, categoria], (err, results));
+  const [results] = await pool.query(query, [name,nombre, precio, info, imagen, categoria], (err, results));
 
   return true;
 }

@@ -63,14 +63,16 @@ app.get('/:productos', async(req, res) => {
   res.json(resp);
 });
 
-app.post('/push/:name', async(req,res) =>
-{
- const {nombre,precio,info,imagen,categoria} = req.body;
- const {name} = req.params;
-
- const resultado = await push(name,nombre,precio,info,imagen,categoria);
-
- res.json({ valor: resultado });
+app.post('/push/:name', async (req, res) => {
+  try {
+    const { nombre, precio, info, imagen, categoria } = req.body;
+    const { name } = req.params;
+    const resultado = await push(name, nombre, precio, info, imagen, categoria);
+    res.json({ valor: resultado });
+  } catch (error) {
+    console.error("Error en /push:", error);
+    res.status(500).json({ error: "Falló la inserción" });
+  }
 });
 
 async function push(name,nombre,precio,info,imagen,categoria)

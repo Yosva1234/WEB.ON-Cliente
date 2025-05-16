@@ -54,19 +54,7 @@ app.get('/exist/:name', async (req, res) => {
   }
 });
 
-async function exist(username) {
-  try {
-    const [tables] = await pool.query("SHOW TABLES LIKE ?", [username]);
-    console.log("Resultado de la consulta:", tables); // Depuración
-    return tables.length > 0;
-  } catch (error) {
-    console.error("Error en exist():", error);
-    throw error; // Propaga el error
-  }
-}
-
-
-app.get('/detete/:name/:id', async (req, res) => {
+app.get('/delete/:name/:id', async (req, res) => {
   const { name , id } = req.params;
   console.log("entro a eliminar", name); // Depuración
 
@@ -84,27 +72,6 @@ app.get('/detete/:name/:id', async (req, res) => {
     res.status(500).json({ error: "Error al verificar la tabla" });
   }
 });
-
-async function borrar(name, id) {
-  try {
-    const query = 'DELETE FROM ?? WHERE id = ?';
-
-     await  pool.query(query, [name, id], (err, results));
-
-     return true;
-
-  } catch (error) {
-    console.error("Error en exist():", error);
-    throw error; // Propaga el error
-  }
-}
-
-
-
- function hashing(username)
-{
-    return username;
-}
 
 app.get('/:productos', async(req, res) => {
   const {productos} = req.params;
@@ -151,7 +118,6 @@ app.post('/:productos', async(req, res) => {
 
 });
 
-
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
@@ -160,3 +126,36 @@ process.on('SIGINT', () => {
   pool.end(); 
   process.exit();
 });
+
+async function borrar(name, id) {
+  try {
+    const query = 'DELETE FROM ?? WHERE id = ?';
+
+     await  pool.query(query, [name, id], (err, results));
+
+     return true;
+
+  } catch (error) {
+    console.error("Error en exist():", error);
+    throw error; // Propaga el error
+  }
+}
+
+async function exist(username) {
+  try {
+    const [tables] = await pool.query("SHOW TABLES LIKE ?", [username]);
+    console.log("Resultado de la consulta:", tables); // Depuración
+    return tables.length > 0;
+  } catch (error) {
+    console.error("Error en exist():", error);
+    throw error; // Propaga el error
+  }
+}
+
+
+
+ function hashing(username)
+{
+    return username;
+}
+

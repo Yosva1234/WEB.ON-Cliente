@@ -115,23 +115,25 @@ app.post('/:productos', async(req, res) => {
 
 });
 
-app.delete('/:productos/:id', (req, res) => {
-  const { productos, id } = req.params;
+app.delete('/:empresa/:id', (req, res) => {
+  const { empresa, id } = req.params;
 
   const query = 'DELETE FROM ?? WHERE id = ?';
-  pool.query(query, [productos,id], (err, results) => {
+  pool.query(query, [empresa, id], (err, results) => {
     if (err) {
-      console.error('Error al eliminar el productos:', err.stack);
-      res.status(500).send('Error en el servidor');
-      return;
+      console.error('Error al eliminar el producto:', err.stack);
+      return res.status(500).json({ error: 'Error en el servidor' }); // Siempre JSON
     }
 
     if (results.affectedRows === 0) {
-      res.status(404).json({ error: 'producto no encontrada' });
-      return;
+      return res.status(404).json({ error: 'Producto no encontrado' });
     }
 
-    res.json({ message: 'producto eliminada correctamente' });
+    res.status(200).json({ 
+      success: true,
+      message: 'Producto eliminado correctamente',
+      id: parseInt(id) // Devuelve el ID eliminado
+    });
   });
 });
 

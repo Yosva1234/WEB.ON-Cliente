@@ -28,11 +28,16 @@ function eliminarBebida (id)
 {
  fetch(`/${empresa}/${id}`, {method: 'DELETE', })
 
- .then((response) => response.json())
- 
- .then(() => { obtenerproductos();  console.log("yeeeees");})
-
- .catch((error) => console.error('Error al eliminar la bebida:', error));
+ .then((response) => {
+  if (!response.ok) {
+    return response.json().then(err => { throw new Error(err.error); });
+  }
+  return response.json();
+})
+.then((data) => {
+  console.log("Respuesta completa:", data);
+  obtenerproductos();
+})
 };
 
 // funcion para hacer la peticion al servidor para que devuelva la tabla de productos 

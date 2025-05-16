@@ -24,21 +24,21 @@ function mostrar(elementos)
 }
   
 // funcion donde le pasas el id del elemento que quieres eliminar y hace la peticion al servidor para eliminarla
-function eliminarBebida (id) 
+async function eliminarBebida (id) 
 {
- fetch(`/${empresa}/${id}`, {method: 'DELETE', })
+ await fetch(`/${empresa}/${id}`, {method: 'DELETE', })
 
  .then((response) => response.json())
  
- .then(() => { obtenerproductos();  console.log("yeeeees") })
+  obtenerproductos();  console.log("yeeeees") 
 
  .catch((error) => console.error('Error al eliminar la bebida:', error));
 };
 
 // funcion para hacer la peticion al servidor para que devuelva la tabla de productos 
-function obtenerproductos() 
+async function obtenerproductos() 
 {
- fetch(`/${empresa}`) 
+  await fetch(`/${empresa}`) 
 
  .then(response => 
  {

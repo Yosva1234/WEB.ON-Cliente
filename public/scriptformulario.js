@@ -39,37 +39,27 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
       const imageUrl = imgbbData.data.url;
 
       // Enviar los datos del producto al backend
-      const producto = {
-          nombre,
-          precio: parseFloat(precio),
-          info,
-          imagen: imageUrl,
-          categoria,
-      };
 
-      const saveResponse = await fetch(`/${empresa}`, {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(producto),
-      });
+      const answer = await fetch(`/push/${nombre}/${precio}/${info}/${imageUrl}/${categoria}`);
 
-      const saveData = await saveResponse.json();
-      if (saveResponse.ok) {
+      if(!answer.ok) console.log("hubo un error en pushear");
+
+      else 
+      {
+
+      const saveData = await answer.json();
+      if (saveData.volor) {
           document.getElementById('message').innerText = 'Producto guardado correctamente.';
           console.log('Producto guardado:', saveData);
           window.location.href =`bienvenido.html#${empresa}`;
           document.getElementById('loading').style.display = 'none';
-          
-      } else {
-          throw new Error('Error al guardar el producto.');
       }
-  } catch (error) {
-      console.error('Error:', error);
-      document.getElementById('message').innerText = 'Hubo un error. Inténtalo de nuevo.';
-      document.getElementById('loading').style.display = 'none';
-  }
+    }}
+    catch
+    {
+        console.log("erroooooooooooor");
+    }
+ 
 });
 
 let categorias;

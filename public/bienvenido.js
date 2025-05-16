@@ -26,15 +26,14 @@ function mostrar(elementos)
 // funcion donde le pasas el id del elemento que quieres eliminar y hace la peticion al servidor para eliminarla
 async function eliminarBebida (id) 
 {
-
   const answer = await borrar(id);
 
   if(answer)
   {
     obtenerproductos();
+    
     console.log("si se cargaron jejejejjeje ");
   }
-
   else 
   {
     console.log("no se pudieron cargar");

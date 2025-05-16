@@ -1,47 +1,62 @@
-document.getElementById('login-form').addEventListener('submit', async function (event) {
-  event.preventDefault(); 
+document.getElementById('login-form').addEventListener('submit', async function (event) 
+{
+ event.preventDefault(); 
 
-  try {
+ try 
+ {
+   const usernameinput = document.getElementById('username').value;
 
-    const usernameinput = document.getElementById('username').value;
-    const usernamehashing = await(getelement(usernameinput));
-    const existe = await(exist(usernamehashing));
+   const usernamehashing = await(getelement(usernameinput));
 
-    if (existe) {
-      window.location.href = `bienvenido.html#${usernamehashing}`; 
-    } else {
-      alert("Usuario o contraseña incorrectos. Inténtalo de nuevo.");
-    }
-  } catch (error) {
-    console.error('Error al obtener datos:', error);
-    alert("Hubo un problema al verificar las credenciales.");
-  }
+   const existe = await(exist(usernamehashing));
+
+   if (existe)  window.location.href = `bienvenido.html#${usernamehashing}`; 
+
+   else   alert("Usuario o contraseña incorrectos. Inténtalo de nuevo.");
+
+  } 
+ catch (error) 
+ {
+   console.error('Error al obtener datos:', error);
+
+   alert("Hubo un problema al verificar las credenciales.");
+ }
 });
 
 
 
-async function getelement(element) {
-  try {
-    const response = await fetch(`/encript/${element}`);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    const data = await response.json();
-    return data.valor;
-  } catch (error) {
+async function getelement(element) 
+{
+ try 
+ {
+   const response = await fetch(`/encript/${element}`);
+
+   if (!response.ok)  throw new Error('Network response was not ok');
+  
+   const data = await response.json();
+
+   return data.valor;
+  }
+  catch (error) 
+  {
     console.error('Hubo un problema con la solicitud:', error);
   }
 }
 
-async function exist(element) {
-  try {
+async function exist(element)
+{
+ try
+ {
     const response = await fetch(`/exist/${element}`);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
+
+    if (!response.ok) throw new Error('Network response was not ok');
+
     const data = await response.json();
+    
     return data.valor;
-  } catch (error) {
-    console.error('Hubo un problema con la solicitud:', error);
+  } 
+  catch (error)
+  {
+   console.error('Hubo un problema con la solicitud:', error);
   }
 }

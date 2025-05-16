@@ -63,9 +63,9 @@ app.get('/:productos', async(req, res) => {
   res.json(resp);
 });
 
-app.get('/push/:nombre/:precio/:info/:imagen/:categoria', async(req,res) =>
+app.post('/push', async(req,res) =>
 {
- const {nombre,precio,info,imagen,categoria} = req.params;
+ const {nombre,precio,info,imagen,categoria} = req.body;
 
  const resultado = await push(nombre,precio,info,imagen,categoria);
 

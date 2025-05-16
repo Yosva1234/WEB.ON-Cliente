@@ -39,17 +39,28 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
       const imageUrl = imgbbData.data.url;
 
       // Enviar los datos del producto al backend
+      const producto = {
+          nombre,
+          precio: parseFloat(precio),
+          info,
+          imagen: imageUrl,
+          categoria,
+      };
 
-      const answer = await fetch(`/push/${nombre}/${precio}/${info}/${imageUrl}/${categoria}`);
+      const answer = await fetch('/push', {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json',
+      },
+     body: JSON.stringify(producto), // Convertir objeto a JSON
+     })
 
       if(!answer.ok) console.log("hubo un error en pushear");
 
       else 
       {
-
       const saveData = await answer.json();
-      if (saveData.volor) {
-          document.getElementById('message').innerText = 'Producto guardado correctamente.';
+      if (saveData.valor) {
           console.log('Producto guardado:', saveData);
           window.location.href =`bienvenido.html#${empresa}`;
           document.getElementById('loading').style.display = 'none';
@@ -57,7 +68,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
     }}
     catch
     {
-        console.log("erroooooooooooor");
+        console.log("perro errorsazo guardando el producto");
     }
  
 });

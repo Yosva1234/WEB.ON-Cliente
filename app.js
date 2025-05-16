@@ -65,6 +65,42 @@ async function exist(username) {
   }
 }
 
+
+app.get('/detete/:name/:id', async (req, res) => {
+  const { name , id } = req.params;
+  console.log("entro a eliminar", name); // Depuración
+
+  try {
+    // Sanitiza el nombre (opcional pero recomendado)
+    const sanitizedName = name.replace(/[^a-zA-Z0-9_]/g, "");
+    if (!sanitizedName) {
+      return res.status(400).json({ error: "Nombre inválido" });
+    }
+
+    const resultado = await borrar(sanitizedName, id);
+    res.json({ valor: resultado });
+  } catch (error) {
+    console.error("Error en /borrar:", error.message); // Log detallado
+    res.status(500).json({ error: "Error al verificar la tabla" });
+  }
+});
+
+async function borrar(name, id) {
+  try {
+    const query = 'DELETE FROM ?? WHERE id = ?';
+
+     await  pool.query(query, [name, id], (err, results));
+
+     return true;
+
+  } catch (error) {
+    console.error("Error en exist():", error);
+    throw error; // Propaga el error
+  }
+}
+
+
+
  function hashing(username)
 {
     return username;
@@ -115,27 +151,6 @@ app.post('/:productos', async(req, res) => {
 
 });
 
-app.delete('/:empresa/:id', (req, res) => {
-  const { empresa, id } = req.params;
-
-  const query = 'DELETE FROM ?? WHERE id = ?';
-  pool.query(query, [empresa, id], (err, results) => {
-    if (err) {
-      console.error('Error al eliminar el producto:', err.stack);
-      return res.status(500).json({ error: 'Error en el servidor' }); // Siempre JSON
-    }
-
-    if (results.affectedRows === 0) {
-      return res.status(404).json({ error: 'Producto no encontrado' });
-    }
-
-    res.status(200).json({ 
-      success: true,
-      message: 'Producto eliminado correctamente',
-      id: parseInt(id) // Devuelve el ID eliminado
-    });
-  });
-});
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);

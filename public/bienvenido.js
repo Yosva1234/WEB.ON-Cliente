@@ -24,26 +24,49 @@ function mostrar(elementos)
 }
   
 // funcion donde le pasas el id del elemento que quieres eliminar y hace la peticion al servidor para eliminarla
-function eliminarBebida (id) 
+async function eliminarBebida (id) 
 {
- fetch(`/${empresa}/${id}`, {method: 'DELETE', })
 
- .then((response) => {
-  if (!response.ok) {
-    return response.json().then(err => { throw new Error(err.error); });
+  const answer = await borrar(id);
+
+  if(answer)
+  {
+    obtenerproductos();
+    console.log("si se cargaron jejejejjeje ");
   }
-  return response.json();
-})
-.then((data) => {
-  console.log("Respuesta completa:", data);
-  obtenerproductos();
-})
+
+  else 
+  {
+    console.log("no se pudieron cargar");
+  }
+
 };
 
-// funcion para hacer la peticion al servidor para que devuelva la tabla de productos 
-function obtenerproductos() 
+
+
+async function borrar(id) 
 {
- fetch(`/${empresa}`) 
+ try 
+ {
+   const response = await fetch(`/delete/${empresa}/${id}`);
+
+   if (!response.ok)  throw new Error('no se pudo borrar el elemento');
+  
+   const data = await response.json();
+
+   return data.valor;
+  }
+  catch (error) 
+  {
+    console.error('Hubo un problema con la solicitud:', error);
+  }
+}
+
+
+// funcion para hacer la peticion al servidor para que devuelva la tabla de productos 
+async function obtenerproductos() 
+{
+ await fetch(`/${empresa}`) 
 
  .then(response => 
  {

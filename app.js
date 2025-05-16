@@ -38,10 +38,10 @@ app.get('/exist/:name', async (req, res) => {
     const sanitizedName = name.replace(/[^a-zA-Z0-9_]/g, "");
     if (!sanitizedName) {
       return res.status(400).json({ error: "Nombre inválido" });
-
+    }
     const resultado = await exist(sanitizedName);
     res.json({ valor: resultado });
-  } 
+  
 });
 
 app.get('/delete/:name/:id', async (req, res) => {

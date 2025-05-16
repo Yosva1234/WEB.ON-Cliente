@@ -28,8 +28,6 @@ async function eliminarBebida (id)
 {
  await fetch(`/${empresa}/${id}`, {method: 'DELETE', })
 
- .then((response) => response.json())
- 
   obtenerproductos();  console.log("yeeeees") 
 
  .catch((error) => console.error('Error al eliminar la bebida:', error));

@@ -75,7 +75,7 @@ app.post('/push/:name', async (req, res) => {
   }
 });
 
-app.post('/push/:name', async (req, res) => {
+app.post('/pushcategoria/:name', async (req, res) => {
   try {
     const { nombre } = req.body;
     const { name } = req.params;

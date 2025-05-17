@@ -8,9 +8,9 @@
           nombre,
       };
 
-      const cateempresa = `cat${empresa}`;
+      const catempresa = `cat${empresa}`;
 
-      const answer = await fetch(`/pushcategoria/${cateempresa}`, {
+      const answer = await fetch(`/pushcategoria/${catempresa}`, {
       method: 'POST',
       headers: {
       'Content-Type': 'application/json',

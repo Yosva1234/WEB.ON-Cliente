@@ -11,8 +11,8 @@ function cargarcategorias(elementos)
      scroll.classList.add('plato');
 
       scroll.innerHTML = `
-     <h3>${elementos.name}</h3>
-     <button onclick="eliminarcategoria(${elementos.id})">Eliminar</button>
+     <h3>${element.name}</h3>
+     <button onclick="eliminarcategoria(${element.id})">Eliminar</button>
      `;
       document.getElementById("categorias-container").appendChild(scroll);
     });
@@ -41,7 +41,10 @@ async function borrar(id)
 {
  try 
  {
-   const response = await fetch(`/delete/${empresa}/${id}`);
+
+    const catempresa = `cat${empresa}`;
+
+   const response = await fetch(`/delete/${catempresa}/${id}`);
 
    if (!response.ok)  throw new Error('no se pudo borrar el elemento');
   

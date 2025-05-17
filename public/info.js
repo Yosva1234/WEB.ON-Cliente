@@ -14,7 +14,7 @@ function cargarcategorias(elementos)
      <h3>${elementos.name}</h3>
      <button onclick="eliminarcategoria(${elementos.id})">Eliminar</button>
      `;
-      platosContainer.appendChild(scroll);
+      document.getElementById("categorias-container").appendChild(scroll);
     });
 }
 

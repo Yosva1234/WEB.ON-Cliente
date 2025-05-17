@@ -75,6 +75,20 @@ app.post('/push/:name', async (req, res) => {
   }
 });
 
+app.post('/push/:name', async (req, res) => {
+  try {
+    const { nombre } = req.body;
+    const { name } = req.params;
+    const resultado = await pushcategoria(name, nombre);
+    res.json({ valor: resultado });
+  } catch (error) {
+    console.error("Error en /push:", error);
+    res.status(500).json({ error: "Falló la inserción" });
+  }
+});
+
+
+
 async function push(name,nombre,precio,info,imagen,categoria)
 {
   const query = `INSERT INTO ?? (nombre, precio, info, imagen, categoria) VALUES (?, ? , ? , ? , ?)`;
@@ -89,6 +103,23 @@ async function push(name,nombre,precio,info,imagen,categoria)
   });
 
   return true;
+}
+
+
+
+async function  pushcategoria(empresa, name)
+{
+  const query = `INSERT INTO ?? (name) VALUES(?)`;
+
+  const [resulst] = await pool.query(query,[empresa,name], (err,resulst) => 
+  {
+    if(err)
+    {
+     console.error('Error al agregar la categoria:', err.stack);
+     return res.status(500).json({ error: 'Error en el servidor' });
+    }
+  });
+
 }
 
 

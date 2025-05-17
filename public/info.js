@@ -79,9 +79,13 @@ function obtenercategorias()
 
 function pressback()
 {
-  const usernameinput = window.location.hash.substring(1); 
-
-  window.location.href = `bienvenido.html#${usernameinput}`; 
+  window.location.href = `bienvenido.html#${empresa}`; 
 }
+
+function press ()
+{
+    window.location.href=`formulariocategoria.html#${empresa}`;
+}
+
 
 window.onload = obtenercategorias;

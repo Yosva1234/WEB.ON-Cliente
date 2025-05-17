@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subir Producto</title>
+  <link rel="stylesheet" href="stylesformulario.css"> <!-- Enlaza el archivo CSS -->
+</head>
+<body>
+  <form id="uploadForm">
+    <h1>Subir Producto</h1>
+ 
+    <!-- Campos del formulario -->
+    <div class="form-group">
+      <label for="nombre">Nombre del categoria:</label>
+      <input type="text" id="nombre" name="nombre" required>
+    </div>
+
+    <button type="submit" onclick="subir()">Subir categoria</button>
+    <p id="message"></p>
+  </form>
+
+  <!-- Página de carga (spinner) -->
+  <div id="loading" style="display: none;">
+    <p>Cargando, por favor espera...</p>
+    <div class="spinner"></div>
+  </div>
+
+  <script src="categoria.js"></script> <!-- Enlaza el archivo JavaScript -->
+</body>
+</html>

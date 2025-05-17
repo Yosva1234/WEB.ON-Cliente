@@ -73,3 +73,12 @@ function obtenercategorias()
     }
     )
 }
+
+function pressback()
+{
+  const usernameinput = window.location.hash.substring(1); 
+
+  window.location.href = `bienvenido.html#${usernameinput}`; 
+}
+
+window.onload = obtenercategorias;

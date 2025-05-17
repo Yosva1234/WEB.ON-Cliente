@@ -91,6 +91,13 @@ function press()
  window.location.href = `formulario.html#${usernameinput}`; 
 }
 
+function pressinfo()
+{
+  const usernameinput = window.location.hash.substring(1); 
+
+  window.location.href = `info.html#${usernameinput}`; 
+}
+
 window.onload = obtenerproductos;
 
   

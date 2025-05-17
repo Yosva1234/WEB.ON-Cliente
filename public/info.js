@@ -4,7 +4,7 @@ function cargarcategorias(elementos)
 {
     document.getElementById("categorias-container").innerHTML ="";
 
-    elementos.array.forEach(element =>
+    elementos.forEach(element =>
     {
      const scroll = document.createElement('div');
 

@@ -25,11 +25,15 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
   formData.append('image', file);
 
   try {
-      // Subir la imagen a ImgBB
+      
+
+
       const imgbbResponse = await fetch('https://api.imgbb.com/1/upload?key=95d0cb31085b82cc5bb9a74c7eaaa790', {
           method: 'POST',
           body: formData,
       });
+
+      console.log("ya subio la foto");
 
       const imgbbData = await imgbbResponse.json();
       if (!imgbbData.success) {
@@ -70,7 +74,9 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
     }}
     catch
     {
-        console.log("perro errorsazo guardando el producto");
+       console.log('error:', saveData);
+       document.getElementById('loading').style.display = 'none';
+       console.log("perro errorsazo guardando el producto");
     }
  
 });

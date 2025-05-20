@@ -1,9 +1,10 @@
-  const nombre = document.getElementById('nombre').value;
-  console.log(nombre);
+
   const empresa = window.location.hash.substring(1); 
 
  async function subir ()
  {
+      const nombre = document.getElementById('nombre').value;
+      console.log(nombre);
       try {
       const producto = {
           nombre,

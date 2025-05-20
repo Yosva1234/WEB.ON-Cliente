@@ -81,6 +81,7 @@ app.post('/pushcategoria/:name', async (req, res) => {
     const { name } = req.params;
     const resultado = await pushcategoria(name, nombre);
     res.json({ valor: resultado });
+    console.log("termino el try de pushcategoria");
   } catch (error) {
     console.error("Error en /push:", error);
     res.status(500).json({ error: "Falló la inserción" });
@@ -120,6 +121,7 @@ async function  pushcategoria(empresa, name)
     }
   });
 
+  console.log("ya se pusheo 0");
   return true;
 
 }

@@ -5,7 +5,6 @@
  {
       const nombre = document.getElementById('nombre').value;
       console.log(nombre);
-      try {
       const producto = {
           nombre,
       };
@@ -22,18 +21,12 @@
 
         if (!answer.ok)
       {
-        const errorData = await answer.json(); // Lee el mensaje de error del servidor
+        const errorData = await answer.json();
         throw new Error(errorData.error || "Error en la petición");
       }
 
-     const data = await answer.json(); // Procesa la respuesta exitosa
+     const data = await answer.json(); 
      console.log("Respuesta del servidor:", data);
 
-      // Solo redirige si todo está OK
      window.location.href = `info.html#${empresa}`;
-    }
-     catch
-     {
-         console.log("error al subir la categoria");
-     }
  }

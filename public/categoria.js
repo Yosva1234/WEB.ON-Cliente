@@ -24,13 +24,9 @@
 
       else 
       {
-      const saveData = await answer.json();
-      if (saveData.valor) {
-          console.log('Producto guardado:', saveData);
-          window.location.href =`info.html#${empresa}`;
-          document.getElementById('loading').style.display = 'none';
-      }
-    }}catch
+     window.location.href =`info.html#${empresa}`;
+    }}
+    catch
     {
         console.log("error al subir la categoria");
     }

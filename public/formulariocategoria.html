@@ -16,7 +16,7 @@
       <input type="text" id="nombre" name="nombre" required>
     </div>
 
-    <button type="submit" onclick="subir()">Subir categoria</button>
+    <button type="submit" onclick="event.preventDefault();subir();">Subir categoria</button>
     <p id="message"></p>
   </form>
 

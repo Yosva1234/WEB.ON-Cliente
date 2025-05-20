@@ -25,7 +25,7 @@ async function eliminarcategoria (id)
   if(answer)
   {
     obtenercategorias();
-    
+
     console.log("si se cargaron jejejejjeje ");
   }
   else 
@@ -41,7 +41,6 @@ async function borrar(id)
 {
  try 
  {
-
     const catempresa = `cat${empresa}`;
 
    const response = await fetch(`/delete/${catempresa}/${id}`);

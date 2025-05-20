@@ -33,8 +33,7 @@ app.get('/encript/:name', async (req, res) => {
 
 app.get('/exist/:name', async (req, res) => {
   const { name } = req.params;
-  console.log("Nombre recibido:", name); // Depuración
-    // Sanitiza el nombre (opcional pero recomendado)
+  console.log("Nombre recibido:", name); 
     const sanitizedName = name.replace(/[^a-zA-Z0-9_]/g, "");
     if (!sanitizedName) {
       return res.status(400).json({ error: "Nombre inválido" });
@@ -78,6 +77,7 @@ app.post('/push/:name', async (req, res) => {
 app.post('/pushcategoria/:name', async (req, res) => {
   try {
     const { nombre } = req.body;
+    console.log(`push categoria todo ok      // ${nombre} //`)
     const { name } = req.params;
     const resultado = await pushcategoria(name, nombre);
     res.json({ valor: resultado });

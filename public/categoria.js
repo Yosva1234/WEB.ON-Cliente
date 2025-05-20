@@ -1,5 +1,6 @@
   const nombre = document.getElementById('nombre').value;
- const empresa = window.location.hash.substring(1); 
+  console.log(nombre);
+  const empresa = window.location.hash.substring(1); 
 
  async function subir ()
  {

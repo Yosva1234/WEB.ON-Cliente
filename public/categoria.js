@@ -17,10 +17,20 @@
       headers: {
       'Content-Type': 'application/json',
       },
-     body: JSON.stringify(producto), // Convertir objeto a JSON
-     });
-        console.log("cargo la pagina de info");
-        window.location.href =`info.html#${empresa}`;
+     body: JSON.stringify(producto), 
+     })
+
+        if (!answer.ok)
+      {
+        const errorData = await answer.json(); // Lee el mensaje de error del servidor
+        throw new Error(errorData.error || "Error en la petición");
+      }
+
+     const data = await answer.json(); // Procesa la respuesta exitosa
+     console.log("Respuesta del servidor:", data);
+
+      // Solo redirige si todo está OK
+     window.location.href = `info.html#${empresa}`;
     }
      catch
      {

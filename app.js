@@ -120,6 +120,8 @@ async function  pushcategoria(empresa, name)
     }
   });
 
+  return true;
+
 }
 
 

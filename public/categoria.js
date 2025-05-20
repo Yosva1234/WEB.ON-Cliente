@@ -17,7 +17,9 @@
       'Content-Type': 'application/json',
       },
      body: JSON.stringify(producto), 
-     })
-     
+     });
+
+     console.log("sali de ahi");
+
      window.location.href = `info.html#${empresa}`;
  }

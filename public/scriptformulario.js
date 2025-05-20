@@ -47,6 +47,8 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
           categoria,
       };
 
+      console.log("antes de pushear");
+
       const answer = await fetch(`/push/${empresa}`, {
       method: 'POST',
       headers: {

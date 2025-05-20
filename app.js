@@ -95,13 +95,15 @@ async function push(name,nombre,precio,info,imagen,categoria)
   const query = `INSERT INTO ?? (nombre, precio, info, imagen, categoria) VALUES (?, ? , ? , ? , ?)`;
 
   const [results] = await pool.query(query, [name,nombre, precio, info, imagen, categoria], (err, results) =>
-  {
-    if(err)
+  {  
+     if(err)
     {
         console.error('Error al agregar la los productos:', err.stack);
         return res.status(500).json({ error: 'Error en el servidor' });
     }
   });
+
+  console.log("se pusheo todo bien");
 
   return true;
 }

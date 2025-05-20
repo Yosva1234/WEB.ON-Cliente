@@ -19,12 +19,9 @@
       },
      body: JSON.stringify(producto), // Convertir objeto a JSON
      });
-      if(!answer.ok) console.log("hubo un error en pushear");
-      else 
-      {
         console.log("cargo la pagina de info");
         window.location.href =`info.html#${empresa}`;
-      }}
+    }
      catch
      {
          console.log("error al subir la categoria");

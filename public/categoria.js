@@ -11,7 +11,7 @@
 
       const catempresa = `cat${empresa}`;
 
-      const answer =  fetch(`/pushcategoria/${catempresa}`, {
+      const answer = await fetch(`/pushcategoria/${catempresa}`, {
       method: 'POST',
       headers: {
       'Content-Type': 'application/json',
@@ -22,4 +22,5 @@
      console.log("sali de ahi");
 
      window.location.href = `info.html#${empresa}`;
+
  }

@@ -11,22 +11,13 @@
 
       const catempresa = `cat${empresa}`;
 
-      const answer = await fetch(`/pushcategoria/${catempresa}`, {
+      const answer =  fetch(`/pushcategoria/${catempresa}`, {
       method: 'POST',
       headers: {
       'Content-Type': 'application/json',
       },
      body: JSON.stringify(producto), 
      })
-
-        if (!answer.ok)
-      {
-        const errorData = await answer.json();
-        throw new Error(errorData.error || "Error en la petición");
-      }
-
-     const data = await answer.json(); 
-     console.log("Respuesta del servidor:", data);
-
+     
      window.location.href = `info.html#${empresa}`;
  }

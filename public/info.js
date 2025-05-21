@@ -86,5 +86,23 @@ function press ()
     window.location.href=`formulariocategoria.html#${empresa}`;
 }
 
+function qrpress()
+{
+   window.location.href=`QR.html#${empresa}`;
+}
 
-window.onload = obtenercategorias;
+function cargarempresa()
+{
+   document.getElementById("empresa").innerHTML = "";
+
+  scroll = `
+  <h1> ${empresa.toUpperCase()} </h1>
+  `;
+
+   document.getElementById("empresa").insertAdjacentHTML('beforeend', scroll);
+
+   obtenercategorias();
+}
+
+
+window.onload = cargarempresa;

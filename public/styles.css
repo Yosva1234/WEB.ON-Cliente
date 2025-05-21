@@ -5,6 +5,55 @@ body {
   margin: 5px;
   padding: 20px;
 }
+ .qr-button {
+            position: fixed; /* Fija la posición en la pantalla */
+            bottom: 20px; /* Distancia desde la parte inferior */
+            right: 20px; /* Distancia desde la derecha */
+            width: 60px; /* Ancho del botón */
+            height: 60px; /* Alto del botón (igual que el ancho para que sea circular) */
+            border-radius: 50%; /* Hace el botón circular */
+            background-color: #4CAF50; /* Color de fondo verde */
+            color: white; /* Color del texto */
+            border: none; /* Sin borde */
+            font-size: 16px; /* Tamaño del texto */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para efecto 3D */
+            display: flex; /* Para centrar el texto */
+            align-items: center; /* Centrado vertical */
+            justify-content: center; /* Centrado horizontal */
+            z-index: 1000; /* Asegura que esté por encima de otros elementos */
+        }
+
+        /* Efecto al pasar el mouse */
+        .qr-button:hover {
+            background-color: #45a049; /* Color más oscuro al pasar el mouse */
+            transform: scale(1.05); /* Ligero aumento de tamaño */
+        }
+
+        /* Efecto al hacer clic */
+        .qr-button:active {
+            transform: scale(0.95); /* Ligera reducción de tamaño */
+        }
+
+         .qr-container {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .tinda
+        {
+          text-align: center;
+        }
+
+        #qr-image {
+            margin: 15px 0;
+        }
+        h1 {
+            color: #333;
+            font-size: 24px;
+        }
 
 body, html {
   margin: 0;     /* Elimina los márgenes predeterminados */
@@ -25,7 +74,7 @@ body, header {
 
 
 header {
-  background-color: #506ea6;
+  background-color: #2D3748;
   color: rgb(0, 0, 0);
   padding: 15px;
   text-align: center;
@@ -44,8 +93,8 @@ header {
   top: 10px; /* Distancia desde la parte superior */
   left: 10px; /* Distancia desde la izquierda */
   padding: 10px 20px;
-  background-color: #000000;
-  color: rgb(255, 240, 78);
+  background-color: #555;
+  color: #2D3748;
   text-decoration: none;
   border-radius: 5px;
   font-size: 1em;
@@ -59,7 +108,7 @@ header {
 }
 
 .login-button:hover {
-  background-color: #555; /* Cambia el color al pasar el mouse */
+  background-color: #4CAF50; /* Cambia el color al pasar el mouse */
 }
 
 /* Estilos para el contenedor de categorías */

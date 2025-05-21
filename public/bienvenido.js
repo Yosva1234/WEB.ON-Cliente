@@ -98,6 +98,19 @@ function pressinfo()
   window.location.href = `info.html#${usernameinput}`; 
 }
 
-window.onload = obtenerproductos;
+function nombreempresa()
+{
+  document.getElementById("empresa").innerHTML = "";
+
+  scroll = `
+  <h1> ${empresa.toUpperCase()} </h1>
+  `;
+
+   document.getElementById("empresa").insertAdjacentHTML('beforeend', scroll);
+
+  obtenerproductos();
+}
+
+window.onload = nombreempresa;
 
   

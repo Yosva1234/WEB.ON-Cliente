@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR code</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <button class="login-button" onclick="pressback()">Back</button>
+
+  
+
+     <div class="qr-container">
+        <h1>QR del Catalogo</h1>
+        <canvas id="qr-image"></canvas>
+        <div id = "tienda">
+            
+     </div>
+    </div>
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    
+  
+  <script> 
+        QRCode.toCanvas(
+            document.getElementById('qr-image'),
+            `https://web-on.onrender.com#${window.location.hash.substring(1)}`, 
+            { width: 200 },
+            function (error) {
+                if (error) console.error(error);
+            }
+        );
+        
+        function pressback()
+        {
+            window.location.href = `info.html#${window.location.hash.substring(1)}`;
+        }
+
+        function enlace()
+        {
+            console.log("yeeeees");
+
+            const name = document.getElementById("tienda");
+
+            scroll = `
+           <a href= "https://web-on.onrender.com#${window.location.hash.substring(1)}">web-on.onrender.com#${window.location.hash.substring(1)}</a>
+            `;
+
+             name.insertAdjacentHTML('beforeend', scroll);
+
+        }
+
+       document.addEventListener('DOMContentLoaded', enlace);
+
+        </script>
+
+</body>
+</html>

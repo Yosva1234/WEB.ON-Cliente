@@ -34,11 +34,7 @@ app.get('/encript/:name', async (req, res) => {
 app.get('/exist/:name', async (req, res) => {
   const { name } = req.params;
   console.log("Nombre recibido:", name); 
-    const sanitizedName = name.replace(/[^a-zA-Z0-9_]/g, "");
-    if (!sanitizedName) {
-      return res.status(400).json({ error: "Nombre inválido" });
-    }
-    const resultado = await exist(sanitizedName);
+    const resultado = await exist(name);
     res.json({ valor: resultado });
   
 });

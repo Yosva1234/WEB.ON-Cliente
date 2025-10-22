@@ -28,7 +28,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
       
 
 
-      const imgbbResponse = await fetch('https://api.imgbb.com/1/upload?key=95d0cb31085b82cc5bb9a74c7eaaa790', {
+      const imgbbResponse = await fetch('https://api.imgbb.com/1/upload?key=9b767d8bc7a641a7e885e0fd075f9af9', {
           method: 'POST',
           body: formData,
       });
